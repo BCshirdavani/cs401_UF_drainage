@@ -9,7 +9,7 @@ public class ReadFile {
         try {
             int RowCount = 0;
             //  Read File
-            System.out.print("filePath is : " + filePath);
+            System.out.print("filePath is : \t\t" + filePath + "\n");
             Scanner input = new Scanner(System.in);
             File file = new File(filePath);
             input = new Scanner(file);
@@ -21,7 +21,12 @@ public class ReadFile {
                 for (int i = 0; i < line.length(); i++){
                     numArray[i] = line.charAt(i) - '0';
                 }
-                intMatrix[RowCount] = numArray;
+                //  Put numArray values into a row of Matrix
+//                for (int w = 0; w < line.length(); w++){
+//                    intMatrix[RowCount][w] = numArray[w];
+//                }
+
+//                intMatrix[RowCount] = numArray;
                 RowCount = RowCount + 1;
             }
             input.close();
