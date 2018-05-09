@@ -3,18 +3,46 @@ import edu.princeton.cs.algs4.UF;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args){
 
-
         ArrayList arrList;
         ArrayList distArrList = new ArrayList();
         int matrixWidth;
         ReadFile fileGetter = new ReadFile();
-//        arrList = fileGetter.ArrayMaker("/Users/shymacbook/Documents/BC/cs401_algo/hw02/cs401_UF_drainage/File-1.txt");
-        arrList = fileGetter.ArrayMaker("../cs401_UF_drainage/File-1.txt");
+        Scanner reader = new Scanner(System.in);
+
+        //  Have user choose the file
+        int choice = 0;
+        while( !( (choice == 1) || (choice == 2) || (choice == 3) || (choice == 4) ) ){
+            System.out.println("Please choose which file yuo would like to open:");
+            System.out.println("(1) - file-1.txt");
+            System.out.println("(2) - file-2.txt");
+            System.out.println("(3) - file-3.txt");
+            System.out.println("(4) - file-4.txt");
+            choice = reader.nextInt();
+        }
+        //  user now chooses
+        switch (choice){
+            case 1:
+                arrList = fileGetter.ArrayMaker("../cs401_UF_drainage/File-1.txt");
+                break;
+            case 2:
+                arrList = fileGetter.ArrayMaker("../cs401_UF_drainage/File-2.txt");
+                break;
+            case 3:
+                arrList = fileGetter.ArrayMaker("../cs401_UF_drainage/File-3.txt");
+                break;
+            case 4:
+                arrList = fileGetter.ArrayMaker("../cs401_UF_drainage/File-4.txt");
+                break;
+                default: arrList = fileGetter.ArrayMaker("../cs401_UF_drainage/File-1.txt");
+                break;
+        }
+
         //  Get width of square matrix array representation
         matrixWidth = (int)Math.sqrt(arrList.size());
         int arrSize = arrList.size();
@@ -73,14 +101,14 @@ public class Main {
                     //  union the corresponding elements in array 2
                     soil.union((int)distArrList.get(k), (int)distArrList.get(k + 1));
                 }
-                //      Uniont RIGHT--------------------------------extracting this into function FAILED
+                //      Uniont Down--------------------------------extracting this into function FAILED
+                if (arrList.get(k).equals(arrList.get(k + matrixWidth))){
+                    //  union the corresponding elements in array 2
+                    soil.union((int)distArrList.get(k), (int)distArrList.get(k + matrixWidth));
+                }
             }
 
-
         }
-
-
-        System.out.println("\nchecking for connection now...");
 
         //  Check if top is connected with bottom
         if (soil.connected(top, bottom)){
@@ -89,8 +117,6 @@ public class Main {
         else {
             System.out.println("\nDon’t allow water to drain");
         }
-
-
 
     }
 

@@ -34,8 +34,7 @@ public class ReadFile {
             ex.printStackTrace();
         }
 
-        System.out.println(arrList.size());
-        System.out.println(arrList);
+        System.out.println("element count:\t\t" + arrList.size());
 
         return arrList;
     }
