@@ -1,11 +1,14 @@
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ReadFile {
 
     int[][] intMatrix = null;
+    ArrayList arrList = new ArrayList();
 
-    public int[][] ArrayMaker(String filePath){
+
+    public ArrayList ArrayMaker(String filePath){
         try {
             int RowCount = 0;
             //  Read File
@@ -20,13 +23,9 @@ public class ReadFile {
                 int[] numArray = new int[line.length()];
                 for (int i = 0; i < line.length(); i++){
                     numArray[i] = line.charAt(i) - '0';
+                    arrList.add(numArray[i]);
                 }
-                //  Put numArray values into a row of Matrix
-//                for (int w = 0; w < line.length(); w++){
-//                    intMatrix[RowCount][w] = numArray[w];
-//                }
 
-//                intMatrix[RowCount] = numArray;
                 RowCount = RowCount + 1;
             }
             input.close();
@@ -34,6 +33,10 @@ public class ReadFile {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-        return intMatrix;
+
+        System.out.println(arrList.size());
+        System.out.println(arrList);
+
+        return arrList;
     }
 }
