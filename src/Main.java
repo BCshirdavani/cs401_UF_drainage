@@ -76,36 +76,21 @@ public class Main {
         for (int k = 0; k < arrSize -1; k++){
             //  if right edge
             if(((k+1) % matrixWidth) == 0){
-                // TODO: ask Fatma why this unionDOWN() function failed here?
-//                unionDown(arrList, distArrList, k, soil);
-                //      Union DOWN--------------------------------extracting this into function FAILED
-                if (arrList.get(k).equals(arrList.get(k + matrixWidth))){
-                    //  union the corresponding elements in array 2
-                    soil.union((int)distArrList.get(k), (int)distArrList.get(k + matrixWidth));
-                }
-
+                //      Union DOWN--------------------------------extracted function fixed
+                unionDown(arrList, distArrList, k, soil,matrixWidth);
             }
             //  if bottom
             else if (k > (arrSize - (matrixWidth + 1)))
             {
-                //      Uniont RIGHT--------------------------------extracting this into function FAILED
-                if (arrList.get(k).equals(arrList.get(k + 1))) {
-                    //  union the corresponding elements in array 2
-                    soil.union((int) distArrList.get(k), (int) distArrList.get(k + 1));
-                }
+                //      Uniont RIGHT------------------------------extracted function fixed
+                unionRight(arrList, distArrList, k, soil);
             }
             //  if neither
             else{
-                //      Uniont RIGHT--------------------------------extracting this into function FAILED
-                if (arrList.get(k).equals(arrList.get(k + 1))){
-                    //  union the corresponding elements in array 2
-                    soil.union((int)distArrList.get(k), (int)distArrList.get(k + 1));
-                }
-                //      Uniont Down--------------------------------extracting this into function FAILED
-                if (arrList.get(k).equals(arrList.get(k + matrixWidth))){
-                    //  union the corresponding elements in array 2
-                    soil.union((int)distArrList.get(k), (int)distArrList.get(k + matrixWidth));
-                }
+                //      Uniont RIGHT-------------------------------extracted function fixed
+                unionRight(arrList, distArrList, k, soil);
+                //      Uniont Down--------------------------------extracted function fixed
+                unionDown(arrList, distArrList, k, soil,matrixWidth);
             }
 
         }
@@ -120,9 +105,9 @@ public class Main {
 
     }
 
-    // TODO: ask Fatma why these unionDown() and unionRight() functions failed?
+    //  FUCNTIONS FIXED! -- missed "static" last time...
     //  Define UNION with RIGHT method--------------------------------extracting this into function FAILED
-    public void unionRight(ArrayList arr1, ArrayList arr2, int index, UF set){
+    public static void unionRight(ArrayList arr1, ArrayList arr2, int index, UF set){
         //  if elements match in array 1
         if (arr1.get(index).equals(arr1.get(index + 1))){
             //  union the corresponding elements in array 2
@@ -130,7 +115,7 @@ public class Main {
         }
     }
     //  Define UNION with BELOW method--------------------------------extracting this into function FAILED
-    public void unionDown(ArrayList arr1, ArrayList arr2, int index, UF set, int cols){
+    public static void unionDown(ArrayList arr1, ArrayList arr2, int index, UF set, int cols){
         //  if elements match in array 1
         if (arr1.get(index).equals(arr1.get(index + cols))){
             //  union the corresponding elements in array 2
